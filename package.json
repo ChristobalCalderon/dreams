@@ -8,6 +8,9 @@
     "start:prod": "next start"
   },
   "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/data-grid": "^4.0.0-alpha.2",
+    "@material-ui/icons": "^4.9.1",
     "@types/mongodb": "^3.5.27",
     "mongodb": "^3.6.2",
     "next": "9.5.1",
