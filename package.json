@@ -3,13 +3,25 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "start": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start:prod": "next start"
   },
   "dependencies": {
+    "@types/mongodb": "^3.5.27",
+    "mongodb": "^3.6.2",
     "next": "9.5.1",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@types/node": "^12.12.53",
+    "@types/react": "^16.9.44",
+    "postcss-flexbugs-fixes": "^4.2.1",
+    "postcss-preset-env": "^6.7.0",
+    "react-markdown": "^4.3.1",
+    "stylelint-config-recommended": "^3.0.0",
+    "tailwindcss": "^1.8.10",
+    "typescript": "^3.9.7"
   }
 }
