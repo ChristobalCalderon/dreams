@@ -62,16 +62,11 @@ handler.get(async (req: any, res: any) => {
       .toArray();
   }
 
-  console.log("wtf: ", doc);
-
   if (doc.length > 0) {
     for (let index = 0; index < dataModel.length; index++) {
       const found = doc.find((element: Activity) => {
-        console.log("found: ", element.type);
-        console.log("found: ", dataModel[index].type);
         return element.type === dataModel[index].type;
       });
-      console.log("found: ", found);
 
       if (found) {
         dataModel[index].isChecked = found.isChecked;
@@ -79,7 +74,6 @@ handler.get(async (req: any, res: any) => {
       }
     }
   }
-  console.log("wtf: ", dataModel);
 
   res.json(dataModel);
 });

@@ -35,9 +35,7 @@ export default function Home(props: HomeProps) {
   const getDataForPreviousDay = async () => {
     let currentDate = dayjs(results[0].date);
     let newDate = currentDate.subtract(1, "day").format("YYYY-MM-DD");
-    const res = await fetch(
-      process.env.VERCEL_URL + "/api/daily?date=" + newDate
-    );
+    const res = await fetch(process.env.apiUrl + "/api/daily?date=" + newDate);
     const json = await res.json();
 
     setResults(json);
@@ -46,9 +44,7 @@ export default function Home(props: HomeProps) {
   const getDataForNextDay = async () => {
     let currentDate = dayjs(results[0].date);
     let newDate = currentDate.add(1, "day").format("YYYY-MM-DD");
-    const res = await fetch(
-      process.env.VERCEL_URL + "/api/daily?date=" + newDate
-    );
+    const res = await fetch(process.env.apiUrl + "/api/daily?date=" + newDate);
     const json = await res.json();
 
     setResults(json);
@@ -59,8 +55,6 @@ export default function Home(props: HomeProps) {
       method: "post",
       body: JSON.stringify(activity),
     });
-
-    console.log(res);
   };
 
   const handleToggle = (newValue: Activity) => () => {
@@ -147,7 +141,7 @@ export default function Home(props: HomeProps) {
 
 export async function getServerSideProps(context) {
   const today = dayjs(new Date()).format("YYYY-MM-DD");
-  const res = await fetch(process.env.VERCEL_URL + "/api/daily?date=" + today);
+  const res = await fetch(process.env.apiUrl + "/api/daily?date=" + today);
 
   const json = await res.json();
   return {
