@@ -1,18 +1,12 @@
-import React from "react";
-import Head from "next/head";
-import connectToDatabase from "../util/mongodb";
-import Nav from "../components/nav";
-import { makeStyles } from "@material-ui/core/styles";
+import Checkbox from "@material-ui/core/Checkbox";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import ListItemText from "@material-ui/core/ListItemText";
-import Checkbox from "@material-ui/core/Checkbox";
-import IconButton from "@material-ui/core/IconButton";
-import CommentIcon from "@material-ui/icons/Comment";
-import { MongoClient } from "mongodb";
+import { makeStyles } from "@material-ui/core/styles";
 import dayjs from "dayjs";
+import Head from "next/head";
+import React from "react";
 import Activity from "./api/activity";
 
 const useStyles = makeStyles((theme) => ({
@@ -141,7 +135,7 @@ export default function Home(props: HomeProps) {
 
 export async function getServerSideProps(context) {
   const today = dayjs(new Date()).format("YYYY-MM-DD");
-  const res = await fetch(process.env.VERCEL_URL + "/api/daily?date=" + today);
+  const res = await fetch(process.env.apiUrl + "/api/daily?date=" + today);
 
   const json = await res.json();
   return {

@@ -50,8 +50,6 @@ handler.get(async (req: any, res: any) => {
 
   let doc: Activity[] = [];
 
-  console.log("middleware", doc);
-
   if (date) {
     console.log("lt: ", new Date(new Date(date).setHours(-2)));
     console.log("gte: ", new Date(new Date(date).setHours(24)));

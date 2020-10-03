@@ -1,5 +1,5 @@
 module.exports = {
   env: {
-    apiUrl: process.env.VERCEL_URL,
+    apiUrl: process.env.API_URL,
   },
 };
