@@ -21,7 +21,7 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx", "tailwind.config.js"
+    "**/*.tsx", "tailwind.config.js", "pages/api/daily.ts", "middleware/database.js"
   ],
   "exclude": [
     "node_modules"

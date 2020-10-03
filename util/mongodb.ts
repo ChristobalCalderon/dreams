@@ -1,4 +1,4 @@
-import { MongoClient } from "mongodb";
+import { Db, MongoClient } from "mongodb";
 
 let uri = process.env.MONGODB_URI;
 let dbName = process.env.MONGODB_DB;
@@ -23,11 +23,9 @@ export default async function connectToDatabase() {
     return { client: cachedClient, db: cachedDb };
   }
 
-  console.log(uri, dbName);
-
   const client = await MongoClient.connect(uri);
 
-  const db = client.db(dbName);
+  const db: Db = client.db(dbName);
 
   cachedClient = client;
   cachedDb = db;

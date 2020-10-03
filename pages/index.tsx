@@ -11,6 +11,9 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Checkbox from "@material-ui/core/Checkbox";
 import IconButton from "@material-ui/core/IconButton";
 import CommentIcon from "@material-ui/icons/Comment";
+import { MongoClient } from "mongodb";
+import dayjs from "dayjs";
+import Activity from "./api/activity";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,21 +23,52 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Home({ isConnected }) {
+export interface HomeProps {
+  data: Activity[];
+}
+
+export default function Home(props: HomeProps) {
   const classes = useStyles();
-  const [checked, setChecked] = React.useState([0]);
+  const today = dayjs(new Date()).format("YYYY-MM-DDTHH:mm:ss");
+  const [results, setResults] = React.useState(props.data);
 
-  const handleToggle = (value) => () => {
-    const currentIndex = checked.indexOf(value);
-    const newChecked = [...checked];
+  const getDataForPreviousDay = async () => {
+    let currentDate = dayjs(results[0].date);
+    let newDate = currentDate.subtract(1, "day").format("YYYY-MM-DD");
+    const res = await fetch("http://localhost:3000/api/daily?date=" + newDate);
+    const json = await res.json();
 
-    if (currentIndex === -1) {
-      newChecked.push(value);
-    } else {
-      newChecked.splice(currentIndex, 1);
+    setResults(json);
+  };
+
+  const getDataForNextDay = async () => {
+    let currentDate = dayjs(results[0].date);
+    let newDate = currentDate.add(1, "day").format("YYYY-MM-DD");
+    const res = await fetch("http://localhost:3000/api/daily?date=" + newDate);
+    const json = await res.json();
+
+    setResults(json);
+  };
+
+  const update = async (activity: Activity) => {
+    const res = await fetch("http://localhost:3000/api/daily", {
+      method: "post",
+      body: JSON.stringify(activity),
+    });
+
+    console.log(res);
+  };
+
+  const handleToggle = (newValue: Activity) => () => {
+    let newArray = [...results];
+
+    for (let index = 0; index < newArray.length; index++) {
+      if (newArray[index].type === newValue.type) {
+        newArray[index].isChecked = !!!newArray[index].isChecked;
+        update(newArray[index]);
+        setResults(newArray);
+      }
     }
-
-    setChecked(newChecked);
   };
 
   return (
@@ -53,22 +87,25 @@ export default function Home({ isConnected }) {
       </Head>
 
       <main className={"main"}>
-        <div>
-          <Nav />
-          <div className="py-20">
-            <h1 className="text-5xl text-center text-accent-1">
-              Next.js + Tailwind CSS
-            </h1>
+        <div className="flex text-center">
+          <div className="w-1/3 bg-gray-200 p-4">
+            <button onClick={getDataForPreviousDay}>Previous Day</button>
+          </div>
+          <div className="w-1/3 p-4">
+            {dayjs(results[0].date).format("MM/DD/YYYY")}
+          </div>
+          <div className="w-1/3 bg-gray-200 p-4">
+            <button onClick={getDataForNextDay}>Next Day</button>
           </div>
         </div>
 
         <List className={classes.root}>
-          {[0, 1, 2, 3].map((value) => {
+          {results.map((value: Activity) => {
             const labelId = `checkbox-list-label-${value}`;
 
             return (
               <ListItem
-                key={value}
+                key={value.type}
                 role={undefined}
                 dense
                 button
@@ -77,69 +114,17 @@ export default function Home({ isConnected }) {
                 <ListItemIcon>
                   <Checkbox
                     edge="start"
-                    checked={checked.indexOf(value) !== -1}
+                    checked={value.isChecked}
                     tabIndex={-1}
                     disableRipple
                     inputProps={{ "aria-labelledby": labelId }}
                   />
                 </ListItemIcon>
-                <ListItemText id={labelId} primary={`Line item ${value + 1}`} />
-                <ListItemSecondaryAction>
-                  <IconButton edge="end" aria-label="comments">
-                    <CommentIcon />
-                  </IconButton>
-                </ListItemSecondaryAction>
+                <ListItemText id={labelId} primary={`${value.text}`} />
               </ListItem>
             );
           })}
         </List>
-
-        {isConnected ? (
-          <h2 className="subtitle">You are connected to MongoDB</h2>
-        ) : (
-          <h2 className="subtitle">
-            You are NOT connected to MongoDB. Check the <code>README.md</code>{" "}
-            for instructions.
-          </h2>
-        )}
-
-        <h1 className={"title"}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={"description"}>
-          Get started by editing <code className={"code"}>pages/index.js</code>
-        </p>
-
-        <div className={"grid"}>
-          <a href="https://nextjs.org/docs" className={"card"}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={"card"}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={"card"}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={"card"}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
       </main>
 
       <footer className={"footer"}>
@@ -157,11 +142,13 @@ export default function Home({ isConnected }) {
 }
 
 export async function getServerSideProps(context) {
-  const { client } = await connectToDatabase();
+  const today = dayjs(new Date()).format("YYYY-MM-DD");
+  const res = await fetch("http://localhost:3000/api/daily?date=" + today);
 
-  const isConnected = client.isConnected();
-
+  const json = await res.json();
   return {
-    props: { isConnected },
+    props: {
+      data: json,
+    },
   };
 }
