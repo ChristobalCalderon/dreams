@@ -141,7 +141,7 @@ export default function Home(props: HomeProps) {
 
 export async function getServerSideProps(context) {
   const today = dayjs(new Date()).format("YYYY-MM-DD");
-  const res = await fetch(process.env.apiUrl + "/api/daily?date=" + today);
+  const res = await fetch(process.env.VERCEL_URL + "/api/daily?date=" + today);
 
   const json = await res.json();
   return {
