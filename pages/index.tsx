@@ -1,18 +1,15 @@
-import { Fab, Input, InputAdornment } from "@material-ui/core";
 import Checkbox from "@material-ui/core/Checkbox";
+import Divider from "@material-ui/core/Divider/Divider";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import { makeStyles } from "@material-ui/core/styles";
 import dayjs from "dayjs";
-import Head from "next/head";
+import { Head } from "next/document";
 import React from "react";
+import ExerciseWeight from "../components/ExerciseWeight";
 import Activity from "./api/activity";
-import EditIcon from "@material-ui/icons/Edit";
-import TextField from "@material-ui/core/TextField/TextField";
-import Divider from "@material-ui/core/Divider/Divider";
-import Weights from "../components/weights";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -75,9 +72,9 @@ export default function Home(props: HomeProps) {
   };
 
   return (
-    <div className={"container"}>
+    <>
       <Head>
-        <title>Create Next App</title>
+        <title>Dreams</title>
         <link rel="icon" href="/favicon.ico" />
         <link
           rel="stylesheet"
@@ -89,6 +86,7 @@ export default function Home(props: HomeProps) {
         />
       </Head>
 
+      {/* <Layout>Welcome to WHATABYTE!</Layout> */}
       <main className={"main"}>
         <div className="flex text-center">
           <div className="w-1/3 bg-gray-200 p-4">
@@ -128,7 +126,7 @@ export default function Home(props: HomeProps) {
             );
           })}
           <Divider component="li" />
-          <Weights></Weights>
+          <ExerciseWeight />
         </List>
       </main>
 
@@ -142,7 +140,7 @@ export default function Home(props: HomeProps) {
           <img src="/vercel.svg" alt="Vercel Logo" className={"logo"} />
         </a>
       </footer>
-    </div>
+    </>
   );
 }
 
