@@ -1,3 +1,4 @@
+import { Fab, Input, InputAdornment } from "@material-ui/core";
 import Checkbox from "@material-ui/core/Checkbox";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -8,12 +9,22 @@ import dayjs from "dayjs";
 import Head from "next/head";
 import React from "react";
 import Activity from "./api/activity";
+import EditIcon from "@material-ui/icons/Edit";
+import TextField from "@material-ui/core/TextField/TextField";
+import Divider from "@material-ui/core/Divider/Divider";
+import Weights from "../components/weights";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
     maxWidth: 360,
     backgroundColor: theme.palette.background.paper,
+  },
+  dividerFullWidth: {
+    margin: `5px 0 0 ${theme.spacing(2)}px`,
+  },
+  dividerInset: {
+    margin: `5px 0 0 ${theme.spacing(9)}px`,
   },
 }));
 
@@ -116,6 +127,8 @@ export default function Home(props: HomeProps) {
               </ListItem>
             );
           })}
+          <Divider component="li" />
+          <Weights></Weights>
         </List>
       </main>
 
