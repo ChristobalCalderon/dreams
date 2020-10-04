@@ -6,9 +6,10 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import { makeStyles } from "@material-ui/core/styles";
 import dayjs from "dayjs";
-import { Head } from "next/document";
+import Head from "next/head";
 import React from "react";
 import ExerciseWeight from "../components/ExerciseWeight";
+import Layout from "../components/Layout";
 import Activity from "./api/activity";
 
 const useStyles = makeStyles((theme) => ({
@@ -86,60 +87,50 @@ export default function Home(props: HomeProps) {
         />
       </Head>
 
-      {/* <Layout>Welcome to WHATABYTE!</Layout> */}
-      <main className={"main"}>
-        <div className="flex text-center">
-          <div className="w-1/3 bg-gray-200 p-4">
-            <button onClick={getDataForPreviousDay}>Previous Day</button>
+      <Layout>
+        <main className={"main"}>
+          <div className="flex text-center">
+            <div className="w-1/3 bg-gray-200 p-4">
+              <button onClick={getDataForPreviousDay}>Previous Day</button>
+            </div>
+            <div className="w-1/3 p-4">
+              {dayjs(results[0].date).format("MM/DD/YYYY")}
+            </div>
+            <div className="w-1/3 bg-gray-200 p-4">
+              <button onClick={getDataForNextDay}>Next Day</button>
+            </div>
           </div>
-          <div className="w-1/3 p-4">
-            {dayjs(results[0].date).format("MM/DD/YYYY")}
-          </div>
-          <div className="w-1/3 bg-gray-200 p-4">
-            <button onClick={getDataForNextDay}>Next Day</button>
-          </div>
-        </div>
 
-        <List className={classes.root}>
-          {results.map((value: Activity) => {
-            const labelId = `checkbox-list-label-${value}`;
+          <List className={classes.root}>
+            {results.map((value: Activity) => {
+              const labelId = `checkbox-list-label-${value}`;
 
-            return (
-              <ListItem
-                key={value.type}
-                role={undefined}
-                dense
-                button
-                onClick={handleToggle(value)}
-              >
-                <ListItemIcon>
-                  <Checkbox
-                    edge="start"
-                    checked={value.isChecked}
-                    tabIndex={-1}
-                    disableRipple
-                    inputProps={{ "aria-labelledby": labelId }}
-                  />
-                </ListItemIcon>
-                <ListItemText id={labelId} primary={`${value.text}`} />
-              </ListItem>
-            );
-          })}
-          <Divider component="li" />
-          <ExerciseWeight />
-        </List>
-      </main>
-
-      <footer className={"footer"}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{" "}
-          <img src="/vercel.svg" alt="Vercel Logo" className={"logo"} />
-        </a>
-      </footer>
+              return (
+                <ListItem
+                  key={value.type}
+                  role={undefined}
+                  dense
+                  button
+                  onClick={handleToggle(value)}
+                >
+                  <ListItemIcon>
+                    <Checkbox
+                      edge="start"
+                      checked={value.isChecked}
+                      tabIndex={-1}
+                      disableRipple
+                      inputProps={{ "aria-labelledby": labelId }}
+                    />
+                  </ListItemIcon>
+                  <ListItemText id={labelId} primary={`${value.text}`} />
+                </ListItem>
+              );
+            })}
+            <Divider component="li" />
+            <ExerciseWeight />
+          </List>
+        </main>
+      </Layout>
     </>
   );
 }
