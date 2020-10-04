@@ -45,7 +45,7 @@ export default function Home(props: HomeProps) {
   };
 
   const update = async (activity: Activity) => {
-    const res = await fetch("http://localhost:3000/api/daily", {
+    const res = await fetch(process.env.apiUrl + "/api/daily", {
       method: "post",
       body: JSON.stringify(activity),
     });
