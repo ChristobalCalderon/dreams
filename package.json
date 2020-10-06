@@ -12,6 +12,7 @@
     "@material-ui/data-grid": "^4.0.0-alpha.2",
     "@material-ui/icons": "^4.9.1",
     "@types/mongodb": "^3.5.27",
+    "chart.js": "^2.9.3",
     "dayjs": "^1.9.1",
     "isomorphic-unfetch": "^3.1.0",
     "mongodb": "^3.6.2",
