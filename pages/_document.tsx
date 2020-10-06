@@ -27,7 +27,10 @@ class MyDocument extends Document {
             content="https://dreams.christobalc.vercel.app"
           />
           <meta property="og:description" content="Where dreams come to die" />
-          <meta property="og:image" content="/dreams.jpg" />
+          <meta
+            property="og:image"
+            content="https://dreams.christobalc.vercel.app/dreams.jpg"
+          />
         </Head>
         <body>
           <Main />
