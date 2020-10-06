@@ -74,7 +74,7 @@ export default function Home(props: HomeProps) {
 
   return (
     <>
-      <main className={"main"}>
+      <main className={classes.root}>
         <Layout>
           <div className="flex text-center">
             <div className="w-1/3 bg-gray-200 p-4">
