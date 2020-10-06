@@ -74,21 +74,8 @@ export default function Home(props: HomeProps) {
 
   return (
     <>
-      <Head>
-        <title>Dreams</title>
-        <link rel="icon" href="/favicon.ico" />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-        />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/icon?family=Material+Icons"
-        />
-      </Head>
-
-      <Layout>
-        <main className={"main"}>
+      <main className={"main"}>
+        <Layout>
           <div className="flex text-center">
             <div className="w-1/3 bg-gray-200 p-4">
               <button onClick={getDataForPreviousDay}>Previous Day</button>
@@ -129,8 +116,8 @@ export default function Home(props: HomeProps) {
             <Divider component="li" />
             <ExerciseWeight />
           </List>
-        </main>
-      </Layout>
+        </Layout>
+      </main>
     </>
   );
 }
