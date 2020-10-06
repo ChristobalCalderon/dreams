@@ -20,6 +20,14 @@ class MyDocument extends Document {
             rel="stylesheet"
             href="https://fonts.googleapis.com/icon?family=Material+Icons"
           />
+          <meta property="og:title" content="Dreams" />
+          <meta property="og:type" content="website" />
+          <meta
+            property="og:url"
+            content="https://dreams.christobalc.vercel.app"
+          />
+          <meta property="og:description" content="Where dreams come to die" />
+          <meta property="og:image" content="/dreams.jpg" />
         </Head>
         <body>
           <Main />

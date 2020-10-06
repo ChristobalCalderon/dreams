@@ -1,5 +1,5 @@
 import React from "react";
-import NavBar from "./Nav/Navbar";
+import NavBar from "./Nav/NavBarAmazing";
 
 export default function Layout(props: any) {
   return (

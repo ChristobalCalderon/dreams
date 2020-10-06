@@ -99,7 +99,7 @@ const contentStyle = {
   flexDirection: "column",
 };
 
-export default function NavBar(props: any) {
+export default function NavBarAmazing(props: any) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
