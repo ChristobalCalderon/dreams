@@ -158,7 +158,7 @@ export default function NavBarAmazing(props: any) {
           <Divider />
           <List>
             {navButtons.map((item, index) => (
-              <Link href={item.path}>
+              <Link href={item.path} key={"link_" + item.label}>
                 <ListItem button key={item.label}>
                   <ListItemIcon>{item.icon}</ListItemIcon>
                   <ListItemText primary={item.label} />
@@ -167,16 +167,6 @@ export default function NavBarAmazing(props: any) {
             ))}
           </List>
           <Divider />
-          <List>
-            {["All mail", "Trash", "Spam"].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List>
         </Drawer>
         <main
           className={clsx(classes.content, {

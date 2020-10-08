@@ -1,5 +1,6 @@
 import "../styles/globals.css";
 import "../styles/tailwind.css";
+import "../node_modules/react-vis/dist/style.css";
 
 export const App = ({ Component, pageProps }: any) => {
   return (

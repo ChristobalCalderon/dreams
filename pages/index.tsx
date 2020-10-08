@@ -1,14 +1,11 @@
 import Checkbox from "@material-ui/core/Checkbox";
-import Divider from "@material-ui/core/Divider/Divider";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import { makeStyles } from "@material-ui/core/styles";
 import dayjs from "dayjs";
-import Head from "next/head";
 import React from "react";
-import ExerciseWeight from "../components/ExerciseWeight";
 import Layout from "../components/Layout";
 import Activity from "./api/activity";
 
@@ -74,8 +71,8 @@ export default function Home(props: HomeProps) {
 
   return (
     <>
-      <main className={classes.root}>
-        <Layout>
+      <Layout>
+        <main className={classes.root}>
           <div className="flex text-center">
             <div className="w-1/3 bg-gray-200 p-4">
               <button onClick={getDataForPreviousDay}>Previous Day</button>
@@ -113,11 +110,9 @@ export default function Home(props: HomeProps) {
                 </ListItem>
               );
             })}
-            <Divider component="li" />
-            <ExerciseWeight />
           </List>
-        </Layout>
-      </main>
+        </main>
+      </Layout>
     </>
   );
 }

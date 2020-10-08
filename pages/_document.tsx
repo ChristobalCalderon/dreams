@@ -10,7 +10,6 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <title>Dreams</title>
           <link rel="icon" href="/dreams.ico" />
           <link
             rel="stylesheet"

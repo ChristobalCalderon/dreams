@@ -25,7 +25,7 @@ export default function ExerciseWeight() {
       {values.map((item: Exercise, index: number) => {
         return (
           <>
-            <ListItem>
+            <ListItem key={"listitem_" + item.label}>
               <TextField
                 id={`fill-basic-${item.property}`}
                 label={item.label}
@@ -33,7 +33,7 @@ export default function ExerciseWeight() {
                 disabled
               />
             </ListItem>
-            <ListItem>
+            <ListItem key={"listitem2_" + item.label}>
               <Input
                 id={`standard-adornment-${item.property}`}
                 style={{ margin: 8 }}
