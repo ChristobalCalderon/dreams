@@ -4,6 +4,10 @@ import FitnessCenterIcon from "@material-ui/icons/FitnessCenter";
 import EqualizerIcon from "@material-ui/icons/Equalizer";
 import AccessibilityIcon from "@material-ui/icons/Accessibility";
 import TimerIcon from "@material-ui/icons/Timer";
+import KitchenIcon from "@material-ui/icons/Kitchen";
+import BuildIcon from "@material-ui/icons/Build";
+import AssignmentIcon from "@material-ui/icons/Assignment";
+import StarIcon from "@material-ui/icons/Star";
 
 const navButtons = [
   {
@@ -30,6 +34,26 @@ const navButtons = [
     label: "Timer",
     path: "/timer",
     icon: <TimerIcon />,
+  },
+  {
+    label: "Nutrition",
+    path: "/nutrition",
+    icon: <KitchenIcon />,
+  },
+  {
+    label: "Supplements",
+    path: "/supplements",
+    icon: <BuildIcon />,
+  },
+  {
+    label: "Program",
+    path: "/program",
+    icon: <AssignmentIcon />,
+  },
+  {
+    label: "LifeStyle",
+    path: "/lifestyle",
+    icon: <StarIcon />,
   },
 ];
 
