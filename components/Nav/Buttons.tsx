@@ -14,7 +14,7 @@ import PersonIcon from "@material-ui/icons/Person";
 
 const navButtons = [
   {
-    label: "Lock up",
+    label: "Unlock",
     path: "/api/login",
     icon: <LockOpenIcon />,
   },
@@ -69,7 +69,7 @@ const navButtons = [
     icon: <StarIcon />,
   },
   {
-    label: "Lock down",
+    label: "Lock",
     path: "/api/logout",
     icon: <LockIcon />,
   },
