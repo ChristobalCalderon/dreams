@@ -1,6 +1,7 @@
 import * as React from "react";
 import Layout from "../components/Layout";
 import Reviews from "../components/Start/Reviews";
+import { useFetchUser } from "../lib/user";
 
 export interface HomeProps {}
 

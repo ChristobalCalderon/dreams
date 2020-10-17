@@ -10,12 +10,18 @@ import AssignmentIcon from "@material-ui/icons/Assignment";
 import StarIcon from "@material-ui/icons/Star";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import LockIcon from "@material-ui/icons/Lock";
+import PersonIcon from "@material-ui/icons/Person";
 
 const navButtons = [
   {
     label: "Lock up",
-    path: "/",
+    path: "/api/login",
     icon: <LockOpenIcon />,
+  },
+  {
+    label: "Profile",
+    path: "/profile",
+    icon: <PersonIcon />,
   },
   {
     label: "Check list",
@@ -64,7 +70,7 @@ const navButtons = [
   },
   {
     label: "Lock down",
-    path: "/",
+    path: "/api/logout",
     icon: <LockIcon />,
   },
 ];
