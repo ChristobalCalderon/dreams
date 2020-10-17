@@ -10,12 +10,14 @@ export default function Profile(props: ProfileProps) {
   return (
     <div>
       <Layout user={user} loading={loading}>
-        <div>
-          <h3>Profile (client rendered)</h3>
-          <img src={user.picture} alt="user picture" />
-          <p>nickname: {user.nickname}</p>
-          <p>name: {user.name}</p>
-        </div>
+        {user && (
+          <div>
+            <h3>Profile (client rendered)</h3>
+            <img src={user.picture} alt="user picture" />
+            <p>nickname: {user.nickname}</p>
+            <p>name: {user.name}</p>
+          </div>
+        )}
       </Layout>
     </div>
   );
