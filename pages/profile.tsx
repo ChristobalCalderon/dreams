@@ -9,7 +9,7 @@ export default function Profile(props: ProfileProps) {
 
   return (
     <div>
-      <Layout user={user} loading={loading}>
+      <Layout>
         {user && (
           <div>
             <h3>Profile (client rendered)</h3>
