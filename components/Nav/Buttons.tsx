@@ -8,11 +8,18 @@ import KitchenIcon from "@material-ui/icons/Kitchen";
 import BuildIcon from "@material-ui/icons/Build";
 import AssignmentIcon from "@material-ui/icons/Assignment";
 import StarIcon from "@material-ui/icons/Star";
+import LockOpenIcon from "@material-ui/icons/LockOpen";
+import LockIcon from "@material-ui/icons/Lock";
 
 const navButtons = [
   {
-    label: "Check list",
+    label: "Lock up",
     path: "/",
+    icon: <LockOpenIcon />,
+  },
+  {
+    label: "Check list",
+    path: "/checklist",
     icon: <CheckBoxIcon />,
   },
   {
@@ -54,6 +61,11 @@ const navButtons = [
     label: "LifeStyle",
     path: "/lifestyle",
     icon: <StarIcon />,
+  },
+  {
+    label: "Lock down",
+    path: "/",
+    icon: <LockIcon />,
   },
 ];
 
