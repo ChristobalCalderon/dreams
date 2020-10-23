@@ -8,7 +8,10 @@ import {
   Typography,
 } from "@material-ui/core";
 import * as React from "react";
+import PhaseFour from "./ProgramPhasesContent/PhaseFour";
 import PhaseOne from "./ProgramPhasesContent/PhaseOne";
+import PhaseThree from "./ProgramPhasesContent/PhaseThree";
+import PhaseTwo from "./ProgramPhasesContent/PhaseTwo";
 
 export interface ProgramPhasesProps {}
 
@@ -84,13 +87,13 @@ export default function ProgramPhases(props: ProgramPhasesProps) {
         <PhaseOne></PhaseOne>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Item Two
+        <PhaseTwo></PhaseTwo>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Item Three
+        <PhaseThree></PhaseThree>
       </TabPanel>
       <TabPanel value={value} index={3}>
-        Item Four
+        <PhaseFour></PhaseFour>
       </TabPanel>
     </div>
   );

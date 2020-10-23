@@ -117,7 +117,7 @@ export default function Checklist(props: ChecklistProps) {
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps(context: any) {
   const today = dayjs(new Date()).format("YYYY-MM-DD");
   const res = await fetch(process.env.apiUrl + "/api/daily?date=" + today);
 

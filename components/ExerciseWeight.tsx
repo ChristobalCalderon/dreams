@@ -1,9 +1,15 @@
 import { ListItem, TextField, Input, InputAdornment } from "@material-ui/core";
 import * as React from "react";
+import { useFetchUser } from "../lib/user";
+import WeightsModel from "../pages/api/weights";
 import Exercises, { Exercise } from "./exercises/exercisesModel";
 
-export default function ExerciseWeight() {
-  const [values, setValues] = React.useState<Exercise[]>(Exercises);
+export interface ExerciseWeightProps {
+  data: Exercise[];
+}
+
+export default function ExerciseWeight(props: ExerciseWeightProps) {
+  const [values, setValues] = React.useState<Exercise[]>(props.data);
 
   const handleChange = (index: number) => (
     event: React.ChangeEvent<HTMLInputElement>

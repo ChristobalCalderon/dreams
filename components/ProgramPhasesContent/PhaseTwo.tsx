@@ -25,10 +25,6 @@ import ImageIcon from "@material-ui/icons/Image";
 import WorkIcon from "@material-ui/icons/Work";
 import BeachAccessIcon from "@material-ui/icons/BeachAccess";
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import TimelapseIcon from "@material-ui/icons/Timelapse";
-import FastForwardIcon from "@material-ui/icons/FastForward";
-import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
-import InfoIcon from "@material-ui/icons/Info";
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -44,7 +40,7 @@ const styles = (theme: Theme) =>
     },
   });
 
-export interface PhaseOneProps {}
+export interface PhaseTwoProps {}
 
 export interface DialogTitleProps extends WithStyles<typeof styles> {
   id: string;
@@ -93,7 +89,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default function PhaseOne(props: PhaseOneProps) {
+export default function PhaseTwo(props: PhaseTwoProps) {
   const [open, setOpen] = React.useState(false);
   const classes = useStyles();
 
@@ -110,15 +106,15 @@ export default function PhaseOne(props: PhaseOneProps) {
         <ListItem>
           <ListItemAvatar>
             <Avatar>
-              <TimelapseIcon />
+              <ImageIcon />
             </Avatar>
           </ListItemAvatar>
-          <ListItemText primary="Rest" secondary="2 min" />
+          <ListItemText primary="Rest" secondary="2.5 min" />
         </ListItem>
         <ListItem>
           <ListItemAvatar>
             <Avatar>
-              <FastForwardIcon />
+              <WorkIcon />
             </Avatar>
           </ListItemAvatar>
           <ListItemText primary="Tempo" secondary="1-1-2" />
@@ -126,17 +122,24 @@ export default function PhaseOne(props: PhaseOneProps) {
         <ListItem>
           <ListItemAvatar>
             <Avatar>
-              <AddCircleOutlineIcon />
+              <BeachAccessIcon />
             </Avatar>
           </ListItemAvatar>
-          <ListItemText primary="Reps" secondary="15" />
+          <ListItemText primary="Reps" secondary="10" />
         </ListItem>
         <ListItem>
           <ListItemAvatar>
             <Avatar>
-              <InfoIcon />
+              <BeachAccessIcon />
             </Avatar>
           </ListItemAvatar>
+          {/* <Typography
+            gutterBottom
+            color="textSecondary"
+            style={{ color: "#FFD700" }}
+          >
+            More information...
+          </Typography> */}
           <Button variant="contained" onClick={handleClickOpen}>
             More information
           </Button>
@@ -148,29 +151,32 @@ export default function PhaseOne(props: PhaseOneProps) {
         open={open}
       >
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Phase one
+          Phase two
         </DialogTitle>
         <DialogContent dividers>
           <Typography gutterBottom color="textSecondary">
-            In this phase we are aiming to train not only your body but also
-            your brain. The ability to do complex movements is a skill that is
-            learned through repetition and that's exactly what we are doing
-            here.
+            At the start of each phase the rep range will change, this causes a
+            change in stimulus and allows for continued growth. As well as this
+            we will continue our progression up the weights inducing the effects
+            of progressive overload.
           </Typography>
           <Typography gutterBottom>
-            This phase incorporates 15 repetitions per set by no mistake, we are
-            doing this many reps to train your motor neurons up on the movements
-            which you will be doing such as squats, deadlifts and bench press.
-            As well as this we are training your CNS (central nervous system) to
-            be able to handle heavy loads and lots of volume.
+            For this phase we will be dropping the repetitions down to 10 and
+            focus on slow controlled reps. This hypertrophy inducing zone will
+            continue to cause an environment in which the fascia will adapt by
+            becoming thicker.
           </Typography>
           <Typography gutterBottom color="textSecondary">
-            On top of this, the high number of repetitions at a lower weight
-            will strengthen your ligaments, tendons and all connective tissues
-            which helps to prevent injury later on in the program.
+            During this phase tempo is of the upmost importance, make sure each
+            rep takes exactly 4 seconds, as we want the muscle to be under
+            tension for at least 40 seconds throughout this phase.
           </Typography>
           <Typography gutterBottom color="textSecondary">
-            The final day of this phase will be your 15 rep max for all
+            As always the eccentric ( lowering ) phase is the most important,
+            ensure it lasts 2 seconds with 1 second squeeze at the top.
+          </Typography>
+          <Typography gutterBottom color="textSecondary">
+            The final day of this phase will be your 10 rep max on all
             exercises.
           </Typography>
         </DialogContent>

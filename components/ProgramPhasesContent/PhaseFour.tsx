@@ -25,10 +25,6 @@ import ImageIcon from "@material-ui/icons/Image";
 import WorkIcon from "@material-ui/icons/Work";
 import BeachAccessIcon from "@material-ui/icons/BeachAccess";
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import TimelapseIcon from "@material-ui/icons/Timelapse";
-import FastForwardIcon from "@material-ui/icons/FastForward";
-import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
-import InfoIcon from "@material-ui/icons/Info";
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -44,7 +40,7 @@ const styles = (theme: Theme) =>
     },
   });
 
-export interface PhaseOneProps {}
+export interface PhaseFourProps {}
 
 export interface DialogTitleProps extends WithStyles<typeof styles> {
   id: string;
@@ -93,7 +89,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default function PhaseOne(props: PhaseOneProps) {
+export default function PhaseFour(props: PhaseFourProps) {
   const [open, setOpen] = React.useState(false);
   const classes = useStyles();
 
@@ -110,15 +106,15 @@ export default function PhaseOne(props: PhaseOneProps) {
         <ListItem>
           <ListItemAvatar>
             <Avatar>
-              <TimelapseIcon />
+              <ImageIcon />
             </Avatar>
           </ListItemAvatar>
-          <ListItemText primary="Rest" secondary="2 min" />
+          <ListItemText primary="Rest" secondary="3 min" />
         </ListItem>
         <ListItem>
           <ListItemAvatar>
             <Avatar>
-              <FastForwardIcon />
+              <WorkIcon />
             </Avatar>
           </ListItemAvatar>
           <ListItemText primary="Tempo" secondary="1-1-2" />
@@ -126,17 +122,24 @@ export default function PhaseOne(props: PhaseOneProps) {
         <ListItem>
           <ListItemAvatar>
             <Avatar>
-              <AddCircleOutlineIcon />
+              <BeachAccessIcon />
             </Avatar>
           </ListItemAvatar>
-          <ListItemText primary="Reps" secondary="15" />
+          <ListItemText primary="Reps" secondary="2" />
         </ListItem>
         <ListItem>
           <ListItemAvatar>
             <Avatar>
-              <InfoIcon />
+              <BeachAccessIcon />
             </Avatar>
           </ListItemAvatar>
+          {/* <Typography
+            gutterBottom
+            color="textSecondary"
+            style={{ color: "#FFD700" }}
+          >
+            More information...
+          </Typography> */}
           <Button variant="contained" onClick={handleClickOpen}>
             More information
           </Button>
@@ -148,30 +151,30 @@ export default function PhaseOne(props: PhaseOneProps) {
         open={open}
       >
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Phase one
+          Phase four
         </DialogTitle>
         <DialogContent dividers>
           <Typography gutterBottom color="textSecondary">
-            In this phase we are aiming to train not only your body but also
-            your brain. The ability to do complex movements is a skill that is
-            learned through repetition and that's exactly what we are doing
-            here.
+            So now you have completed the 6 week strength and size program and
+            you are left with two options...
           </Typography>
           <Typography gutterBottom>
-            This phase incorporates 15 repetitions per set by no mistake, we are
-            doing this many reps to train your motor neurons up on the movements
-            which you will be doing such as squats, deadlifts and bench press.
-            As well as this we are training your CNS (central nervous system) to
-            be able to handle heavy loads and lots of volume.
+            Option 1: If you are not an advanced lifter or you do not want to do
+            eccentric workouts ; 1 - 2 weeks of strategic deconditioning and
+            then restart the program with heavier weights than previously used.
           </Typography>
           <Typography gutterBottom color="textSecondary">
-            On top of this, the high number of repetitions at a lower weight
-            will strengthen your ligaments, tendons and all connective tissues
-            which helps to prevent injury later on in the program.
+            Option 2: You are an advanced lifter and really want to break
+            through those annoying plateus ; Begin 2 weeks of eccentric workouts
+            with 5 sets of 2 negative reps at 105% - 110% of your 1rm
           </Typography>
           <Typography gutterBottom color="textSecondary">
-            The final day of this phase will be your 15 rep max for all
-            exercises.
+            At the end of these 2 weeks you are COMPLETELY DONE.
+          </Typography>
+          <Typography gutterBottom color="textSecondary">
+            Now it's time to take those 9-12 days of strategic deconditioning
+            and then restart the program with heavier weights than previously
+            used.
           </Typography>
         </DialogContent>
         <DialogActions>

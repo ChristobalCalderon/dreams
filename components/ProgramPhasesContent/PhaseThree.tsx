@@ -25,10 +25,6 @@ import ImageIcon from "@material-ui/icons/Image";
 import WorkIcon from "@material-ui/icons/Work";
 import BeachAccessIcon from "@material-ui/icons/BeachAccess";
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import TimelapseIcon from "@material-ui/icons/Timelapse";
-import FastForwardIcon from "@material-ui/icons/FastForward";
-import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
-import InfoIcon from "@material-ui/icons/Info";
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -44,7 +40,7 @@ const styles = (theme: Theme) =>
     },
   });
 
-export interface PhaseOneProps {}
+export interface PhaseThreeProps {}
 
 export interface DialogTitleProps extends WithStyles<typeof styles> {
   id: string;
@@ -93,7 +89,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default function PhaseOne(props: PhaseOneProps) {
+export default function PhaseThree(props: PhaseThreeProps) {
   const [open, setOpen] = React.useState(false);
   const classes = useStyles();
 
@@ -110,15 +106,15 @@ export default function PhaseOne(props: PhaseOneProps) {
         <ListItem>
           <ListItemAvatar>
             <Avatar>
-              <TimelapseIcon />
+              <ImageIcon />
             </Avatar>
           </ListItemAvatar>
-          <ListItemText primary="Rest" secondary="2 min" />
+          <ListItemText primary="Rest" secondary="4 min" />
         </ListItem>
         <ListItem>
           <ListItemAvatar>
             <Avatar>
-              <FastForwardIcon />
+              <WorkIcon />
             </Avatar>
           </ListItemAvatar>
           <ListItemText primary="Tempo" secondary="1-1-2" />
@@ -126,17 +122,24 @@ export default function PhaseOne(props: PhaseOneProps) {
         <ListItem>
           <ListItemAvatar>
             <Avatar>
-              <AddCircleOutlineIcon />
+              <BeachAccessIcon />
             </Avatar>
           </ListItemAvatar>
-          <ListItemText primary="Reps" secondary="15" />
+          <ListItemText primary="Reps" secondary="5" />
         </ListItem>
         <ListItem>
           <ListItemAvatar>
             <Avatar>
-              <InfoIcon />
+              <BeachAccessIcon />
             </Avatar>
           </ListItemAvatar>
+          {/* <Typography
+            gutterBottom
+            color="textSecondary"
+            style={{ color: "#FFD700" }}
+          >
+            More information...
+          </Typography> */}
           <Button variant="contained" onClick={handleClickOpen}>
             More information
           </Button>
@@ -148,29 +151,30 @@ export default function PhaseOne(props: PhaseOneProps) {
         open={open}
       >
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Phase one
+          Phase three
         </DialogTitle>
         <DialogContent dividers>
           <Typography gutterBottom color="textSecondary">
-            In this phase we are aiming to train not only your body but also
-            your brain. The ability to do complex movements is a skill that is
-            learned through repetition and that's exactly what we are doing
-            here.
+            So now we move into the main strength building phase, although we
+            have been building strength along the way, we now put more emphasis
+            on that aspect of our training.
           </Typography>
           <Typography gutterBottom>
-            This phase incorporates 15 repetitions per set by no mistake, we are
-            doing this many reps to train your motor neurons up on the movements
-            which you will be doing such as squats, deadlifts and bench press.
-            As well as this we are training your CNS (central nervous system) to
-            be able to handle heavy loads and lots of volume.
+            That's not to say we won't be still gaining size here, don't worry,
+            we will be..
           </Typography>
           <Typography gutterBottom color="textSecondary">
-            On top of this, the high number of repetitions at a lower weight
-            will strengthen your ligaments, tendons and all connective tissues
-            which helps to prevent injury later on in the program.
+            As we again change the stimulus that the muscle, the motor neurons
+            and the motor units receive, we will continue developing all aspects
+            as long as we remain in the environment which we have created by
+            training our muscles so frequently.
           </Typography>
           <Typography gutterBottom color="textSecondary">
-            The final day of this phase will be your 15 rep max for all
+            For this phase a spotter is absolutely necessary as you risk injury
+            training by yourself.
+          </Typography>
+          <Typography gutterBottom color="textSecondary">
+            On the final day of this phase you will lift your 5 rep max for all
             exercises.
           </Typography>
         </DialogContent>
