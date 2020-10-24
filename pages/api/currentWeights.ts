@@ -5,6 +5,7 @@ import nextConnect from "next-connect";
 import middleware from "../../middleware/database";
 import Weights from "./weights";
 import auth0 from "../../lib/auth0";
+import Exercises from "../../components/exercises/exercisesModel";
 
 interface ExtendedRequest extends IncomingMessage {
   db: Db;
@@ -21,15 +22,28 @@ handler.use(middleware);
 
 handler.get(async (req: ExtendedRequest, res: NextApiResponse) => {
   let doc: Weights[] = [];
+  let exercises = Exercises;
   const { user } = await auth0.getSession(req);
-  console.log("Chris " + user.sub);
+
   if (user) {
+    exercises.forEach((element) => {
+      element.user = user.sub;
+    });
+
     doc = await req.db
       .collection("currentWeights")
       .find({ user: user.sub })
       .toArray();
+
+    if (doc) {
+      doc.forEach((element) => {
+        var index = exercises.findIndex((x) => x.property == element.property);
+        exercises[index] = element;
+      });
+    }
   }
-  res.json(doc);
+
+  res.json(exercises);
 });
 
 handler.post(async (req: ExtendedRequest, res: NextApiResponse) => {
@@ -40,11 +54,13 @@ handler.post(async (req: ExtendedRequest, res: NextApiResponse) => {
     .collection("currentWeights")
     .findOne({ _id: data._id });
 
+  console.log("Chris " + data._id);
+
   if (doc == null) {
     await req.db.collection("currentWeights").insertOne(data);
   } else {
     await req.db
-      .collection("daily")
+      .collection("currentWeights")
       .updateOne(
         { _id: data._id },
         { $set: { value: data.value } },

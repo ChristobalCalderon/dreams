@@ -29,6 +29,11 @@ const navButtons = [
     icon: <CheckBoxIcon />,
   },
   {
+    label: "Weights",
+    path: "/weights",
+    icon: <FitnessCenterIcon />,
+  },
+  {
     label: "Exercises",
     path: "/exercises",
     icon: <AccessibilityIcon />,
@@ -37,11 +42,6 @@ const navButtons = [
     label: "Statistics",
     path: "/statistics",
     icon: <EqualizerIcon />,
-  },
-  {
-    label: "Weights",
-    path: "/weights",
-    icon: <FitnessCenterIcon />,
   },
   {
     label: "Timer",

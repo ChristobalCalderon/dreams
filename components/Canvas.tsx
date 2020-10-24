@@ -1,3 +1,4 @@
+import { Typography } from "@material-ui/core";
 import * as React from "react";
 import {
   HorizontalGridLines,
@@ -28,21 +29,51 @@ const colorRanges = {
 const randomData = getRandomData();
 
 export default function Canvas(props: CanvasProps) {
-  const data = [
-    { x: 0, y: 8 },
-    { x: 1, y: 5 },
-    { x: 2, y: 4 },
-    { x: 3, y: 9 },
-    { x: 4, y: 1 },
-    { x: 5, y: 7 },
-    { x: 6, y: 6 },
-    { x: 7, y: 3 },
-    { x: 8, y: 2 },
-    { x: 9, y: 0 },
-  ];
+  const MSEC_DAILY = 86400000;
+
+  const timestamp = new Date("September 9 2017").getTime();
+
+  let curr = new Date();
+  let monday = curr.getDate() - curr.getDay() + 1;
+  let tuesday = monday + 1;
+  let wednesday = monday + 2;
+  let thursday = monday + 3;
+  let friday = monday + 4;
+  let saturday = monday + 5;
+  let sunday = monday + 6;
+
+  let mondayday = new Date(curr.setDate(monday)).getTime();
+  let tuesdayday = new Date(curr.setDate(tuesday)).getTime();
+  let wednesdayday = new Date(curr.setDate(wednesday)).getTime();
+  let thursdayday = new Date(curr.setDate(thursday)).getTime();
+  let fridayday = new Date(curr.setDate(friday)).getTime();
+  let saturdayday = new Date(curr.setDate(saturday)).getTime();
+  let sundayday = new Date(curr.setDate(sunday)).getTime();
 
   return (
     <>
+      <Typography variant="h2" component="h2">
+        Current week
+      </Typography>
+
+      <XYPlot xType="time" width={300} height={300}>
+        <HorizontalGridLines />
+        <VerticalGridLines />
+        <XAxis title="Monday to Sunday" />
+        <YAxis title="Set 28" />
+        <LineSeries
+          data={[
+            { x: mondayday, y: 10 },
+            { x: tuesdayday, y: 5 },
+            { x: wednesdayday, y: 15 },
+            { x: thursdayday, y: 12 },
+            { x: fridayday, y: 16 },
+            { x: saturdayday, y: 16 },
+            { x: sundayday, y: 28 },
+          ]}
+        />
+      </XYPlot>
+
       <XYPlot width={300} height={300}>
         <MarkSeries
           className="mark-series-example"

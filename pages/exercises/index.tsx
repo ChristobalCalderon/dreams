@@ -1,12 +1,12 @@
 import * as React from "react";
 import Layout from "../../components/Layout";
-import MediaCard from "../../components/MediaCard";
+import ExercisesDescribtionList from "../../components/ExercisesDescribtionList";
 
 export default function ExercisesPage(props: any) {
   return (
     <div>
       <Layout>
-        <MediaCard></MediaCard>
+        <ExercisesDescribtionList></ExercisesDescribtionList>
       </Layout>
     </div>
   );

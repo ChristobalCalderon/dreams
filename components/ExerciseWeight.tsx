@@ -24,6 +24,11 @@ export default function ExerciseWeight(props: ExerciseWeightProps) {
     items[index] = updatedItem;
     // 5. Set the state to our new copy
     setValues(items);
+
+    fetch(process.env.apiUrl + "/api/currentWeights", {
+      method: "post",
+      body: JSON.stringify(updatedItem),
+    });
   };
 
   return (
