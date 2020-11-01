@@ -1,4 +1,4 @@
-import { Typography } from "@material-ui/core";
+import { makeStyles, Theme, Typography } from "@material-ui/core";
 import * as React from "react";
 import {
   HorizontalGridLines,
@@ -9,8 +9,24 @@ import {
   XYPlot,
   YAxis,
 } from "react-vis";
+import MuiAlert, { AlertProps } from "@material-ui/lab/Alert";
+import { useEffect } from "react";
+import dayjs from "dayjs";
 
 export interface CanvasProps {}
+
+function Alert(props: AlertProps) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    width: "100%",
+    "& > * + *": {
+      marginTop: theme.spacing(2),
+    },
+  },
+}));
 
 function getRandomData() {
   return new Array(100).fill(0).map((row) => ({
@@ -29,6 +45,7 @@ const colorRanges = {
 const randomData = getRandomData();
 
 export default function Canvas(props: CanvasProps) {
+  const classes = useStyles();
   const MSEC_DAILY = 86400000;
 
   const timestamp = new Date("September 9 2017").getTime();
@@ -50,12 +67,40 @@ export default function Canvas(props: CanvasProps) {
   let saturdayday = new Date(curr.setDate(saturday)).getTime();
   let sundayday = new Date(curr.setDate(sunday)).getTime();
 
+  useEffect(() => {
+    let curr = new Date();
+    let monday = curr.getDate() - curr.getDay() + 1;
+    let sunday = curr.getDate() - curr.getDay() + 7;
+
+    console.log("Chris", monday, sunday);
+
+    let mondayDate = dayjs(curr.setDate(monday));
+    let sundayDate = dayjs(curr.setDate(sunday));
+    let startDate = mondayDate.subtract(1, "day").format("YYYY-MM-DD");
+    let endDate = sundayDate.subtract(1, "day").format("YYYY-MM-DD");
+
+    console.log("Chris", mondayDate, sundayDate);
+
+    fetch(
+      process.env.apiUrl +
+        "/api/weekly?startDate=" +
+        startDate +
+        "&endDate=" +
+        endDate
+    )
+      .then((response) => response.json())
+      .then((data) => console.log(data));
+  }, []);
+
   return (
     <>
       <Typography variant="h2" component="h2">
-        Current week
+        Weekly sets
       </Typography>
-
+      {/* <Alert severity="error">
+        5 out 28 sets left! Come on, you can do it!
+      </Alert> */}
+      <Alert severity="success">Great job this week</Alert>
       <XYPlot xType="time" width={300} height={300}>
         <HorizontalGridLines />
         <VerticalGridLines />
@@ -74,13 +119,13 @@ export default function Canvas(props: CanvasProps) {
         />
       </XYPlot>
 
-      <XYPlot width={300} height={300}>
+      {/* <XYPlot width={300} height={300}>
         <MarkSeries
           className="mark-series-example"
           sizeRange={[5, 15]}
           data={randomData}
         />
-      </XYPlot>
+      </XYPlot> */}
     </>
   );
 }
